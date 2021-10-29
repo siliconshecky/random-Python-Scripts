@@ -14,17 +14,21 @@ print('Enter domain name: ')
 basedomain = input()
 separator = '.'
 
-# generate 3 character subdomain
-characters = string.ascii_letters + string.digits
-subdomain = ''.join(random.choice(characters) for i in range(3))
-fqdn = subdomain + separator + basedomain
-print(fqdn)
+i = 0
+while i != 10:
+    i = i+1
+    # generate 3 character subdomain
+    characters = string.ascii_letters + string.digits
+    subdomain = ''.join(random.choice(characters) for i in range(3))
+    fqdn = subdomain + separator + basedomain
+    print(fqdn)
 
 
-try:
-    result = dns.resolver.resolve(fqdn, 'A', raise_on_no_answer=False) 
-    for ipval in result:
-        print('IP', ipval.to_text())
-except dns.resolver.NXDOMAIN:
-    print("Domain does not exist")    
+    try:
+        result = dns.resolver.resolve(fqdn, 'A', raise_on_no_answer=False) 
+        for ipval in result:
+            print('IP', ipval.to_text())
+    except dns.resolver.NXDOMAIN:
+        print("Domain does not exist")
+        pass        
 sys.exit("End of Line")
