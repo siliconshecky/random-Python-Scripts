@@ -1,3 +1,7 @@
+# This will create a 3 character subdomain of a domain name to see if it exists
+# upcoming features includ more modular and a loop to do multiple runs
+# Written by Mike "Shecky" K.
+
 import sys
 import random
 import string
