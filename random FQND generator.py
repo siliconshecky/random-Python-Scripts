@@ -23,7 +23,7 @@ while i != num_of_names:
     i = i+1
     # generate 3 character subdomain
     characters = string.ascii_letters + string.digits
-    subdomain = ''.join(random.choice(characters) for x in range(random.randrange(1, num_of_char))) # remove the random.randrange function to keep the same number of charters per try
+    subdomain = ''.join(random.choice(characters) for x in range(random.randrange(1, num_of_char))) # remove the random.randrange function and make it range(num_of_char) to keep the same number of charters per try
     fqdn = subdomain + separator + basedomain
     print(fqdn)
 
