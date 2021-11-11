@@ -13,19 +13,22 @@ import dns.resolver
 print('Enter domain name: ')
 basedomain = input()
 separator = '.'
+print('How many Domain names to generate: ')
+num_of_names = int(input())
+print('How many characters maximum for the subdomain: ')
+num_of_char = int(input())
 
-# loop for multiple iterations
 i = 0
-while i != 10: # change this number for how long this will loop for
+while i != num_of_names:
     i = i+1
-    # generate 3 character subdomain Change range in subdomain variable for more characters
+    # generate 3 character subdomain
     characters = string.ascii_letters + string.digits
-    subdomain = ''.join(random.choice(characters) for i in range(3))
+    subdomain = ''.join(random.choice(characters) for x in range(random.randrange(1, num_of_char)))
     fqdn = subdomain + separator + basedomain
     print(fqdn)
 
 
-    try: # try sequence to see if domain exists, and if an exception is thrown it will say that the domain does not exist
+    try: # Check for A record and let know if it exists or not
         result = dns.resolver.resolve(fqdn, 'A', raise_on_no_answer=False) 
         for ipval in result:
             print('IP', ipval.to_text())
